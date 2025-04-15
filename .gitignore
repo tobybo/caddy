@@ -8,6 +8,9 @@ Caddyfile.*
 # artifacts from pprof tooling
 *.prof
 *.test
+*.swo
+*.swn
+*.swp
 
 # build artifacts and helpers
 cmd/caddy/caddy
@@ -29,3 +32,5 @@ caddy-dist
 # IDE files
 .idea/
 .vscode/
+
+dep/image_recognize_server/token.txt

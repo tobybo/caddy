@@ -1,0 +1,45 @@
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "net/http"
+)
+
+// 响应结构体
+type Response struct {
+	Code int `json:"code"`
+    Message string `json:"message"`
+    Data interface{} `json:"data"`
+}
+
+// 处理 GET 请求
+// func greetHandler(w http.ResponseWriter, r *http.Request) {
+//     response := Response{Message: "Hello, welcome to the Go API!"}
+//     w.Header().Set("Content-Type", "application/json")
+//     json.NewEncoder(w).Encode(response)
+// }
+
+// 处理 POST 请求
+func postRecognize(w http.ResponseWriter, r *http.Request) {
+    fmt.Println("postRegister")
+    var data map[string]interface{}
+	err := json.NewDecoder(r.Body).Decode(&data);
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+    response := Response{Message: "Data received!"}
+	fmt.Println(data)
+
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(response)
+}
+
+func main() {
+    http.HandleFunc("/api/recognize", postRecognize)
+    fmt.Println("Starting server on :8080")
+    if err := http.ListenAndServe(":8080", nil); err != nil {
+        fmt.Println("Failed to start server:", err)
+    }
+}
