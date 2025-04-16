@@ -10,7 +10,6 @@ func ImageRecognition(accessToken string, r *http.Request) (*http.Response, erro
 
     // 设置请求参数
     requestURL = requestURL + "?access_token=" + accessToken
-	fmt.Println(requestURL)
     headers := map[string]string{
         "Content-Type": "application/x-www-form-urlencoded",
     }
