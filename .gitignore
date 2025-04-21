@@ -34,3 +34,4 @@ caddy-dist
 .vscode/
 
 dep/image_recognize_server/token.txt
+dep/image_recognize_server/image_recognize_server
