@@ -11,6 +11,8 @@ Caddyfile.*
 *.swo
 *.swn
 *.swp
+*/go.sum
+*/go.mod
 
 # build artifacts and helpers
 cmd/caddy/caddy
