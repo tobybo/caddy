@@ -1,6 +1,7 @@
 package img_recognize_sdk
 
 import (
+	"io"
     "fmt"
     "net/http"
 )
@@ -34,15 +35,13 @@ func ImageRecognition(accessToken string, w http.ResponseWriter, r *http.Request
 
     // 设置请求参数
     requestURL = requestURL + "?access_token=" + accessToken
-    headers := map[string]string{
-        "Content-Type": "application/x-www-form-urlencoded",
-    }
 
     resp, err := http.PostForm(requestURL, r.Form)
     if err != nil {
         http.Error(w, "Failed to send request to third party", http.StatusInternalServerError)
         return
     }
+    defer resp.Body.Close()
 
     // 将第三方服务器的响应状态码复制到客户端响应中
     w.WriteHeader(resp.StatusCode)
