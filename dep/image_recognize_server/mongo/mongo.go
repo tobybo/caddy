@@ -113,7 +113,7 @@ func FindAndModify(db_name string, collectionName string, id string, chgs interf
 		log.Fatal(err)
 	}
 
-	log.Println(result);
+	//log.Println(result);
 
     return result, nil
 }
